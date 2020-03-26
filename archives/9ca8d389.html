@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="referrer" content="no-referrer">
+  <meta name="google-site-verification" content="d9AYrxkYK5UHR01Tg1YU-rFek8B4Iv8QJ-2l0wKP9NE">
+  <link rel="shortcut icon" href="https://http://zhihui.gold/images/head.ico">
+
+  
+  <title>Ubuntu常用命令总结之二：系统信息、磁盘操作、用户权限操作、压缩操作 | 浅梦未央のBLOG</title>
+  
+  
+
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <div class="loading"><div id="loader"></div></div>
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="/">
+
+  
+
+  
+    <link rel="stylesheet" href="/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/global-hot-data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+  
+  <script>
+    fetch('https://v1.hitokoto.cn/?c=a')
+      .then(function (res){
+        return res.json();
+      })
+      .then(function (data) {
+        var h_content = document.getElementById('hitokoto-content');
+        var h_from = document.getElementById('hitokoto-from');
+        h_content.innerText = data.hitokoto; 
+        h_from.innerText = "——" + data.from; 
+      })
+      .catch(function (err) {
+        console.error(err);
+      })
+  </script>
+
+  	<!-- Global site tag (gtag.js) - Google Analytics -->
+  	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-150421519-2"></script>
+  	<script>
+  	window.dataLayer = window.dataLayer || [];
+  	function gtag(){dataLayer.push(arguments);}
+  	gtag('js', new Date());
+	gtag('config', 'UA-150421519-2');
+	</script>
+
+  
+  
+  
+</head>
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>浅梦未央のBLOG</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="/"
+            
+            
+            id="home">
+            <i class='fas fa-home fa-fw'></i>&nbsp;主页
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/friends/"
+            
+              rel="nofollow"
+            
+            
+            id="friends">
+            <i class='fas fa-link fa-fw'></i>&nbsp;友链
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/about/"
+            
+              rel="nofollow"
+            
+            
+            id="about">
+            <i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/message"
+            
+            
+            id="message">
+            <i class='fas fa-comment fa-fw'></i>&nbsp;留言板
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="/lab/"
+            
+              rel="nofollow"
+            
+            
+            id="lab">
+            <i class='fas fa-fire fa-fw'></i>&nbsp;实验室
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          浅梦未央のBLOG
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                  
+                  id="home">
+									<i class='fas fa-home fa-fw'></i>&nbsp;主页
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/friends/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="friends">
+									<i class='fas fa-link fa-fw'></i>&nbsp;友链
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/about/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="about">
+									<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/message"
+                  
+                  
+                  id="message">
+									<i class='fas fa-comment fa-fw'></i>&nbsp;留言板
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/lab/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="lab">
+									<i class='fas fa-fire fa-fw'></i>&nbsp;实验室
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜索" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                
+                id="home">
+								<i class='fas fa-clock fa-fw'></i>&nbsp;近期文章
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/blog/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="blogarchives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;文章归档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/projects/"
+                
+                
+                id="projects">
+								<i class='fas fa-code-branch fa-fw'></i>&nbsp;开源项目
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/friends/"
+                
+                  rel="nofollow"
+                
+                
+                id="friends">
+								<i class='fas fa-link fa-fw'></i>&nbsp;我的友链
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://xaoxuu.com/wiki/material-x/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:xaoxuu.comwikimaterial-x">
+								<i class='fas fa-book fa-fw'></i>&nbsp;主题文档
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/about/"
+                
+                  rel="nofollow"
+                
+                
+                id="about">
+								<i class='fas fa-info-circle fa-fw'></i>&nbsp;关于小站
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/archives/9ca8d389.html">
+        Ubuntu常用命令总结之二：系统信息、磁盘操作、用户权限操作、压缩操作
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://zhihui.gold" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>Sunshine</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-03-21</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+  
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <p>养兵千日&nbsp;&nbsp;用兵一时</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Sunshine-0215/CDN_Personalblog_202001@3.0/200321/artical_200321_cover.png" alt></p>
+<a id="more"></a>
+<p>在使用Ubuntu系统的过程中，经常需要使用一些系统命令，Linux系发行版的最大特点也是在使用这些系统的时候，适当使用一些命令可以极大地增加使用这类系统的效率，这也是开发人员们偏爱使用这类系统的一大原因</p>
+<p>对于Linux系发行版，理论上可以在终端使用命令，代替在图形界面中所做的一切操作，有道是，“UI能做的Terminal能做，UI不能做的Terminal一样能做”。先将日常使用中常用到的命令总结记录下来，以便日后查阅使用。第二篇中包含的大多数命令，就是用图形界面不能做到的事情了</p>
+<h2 id="显示系统信息"><a href="#显示系统信息" class="headerlink" title="显示系统信息"></a>显示系统信息</h2><h4 id="显示处理器架构"><a href="#显示处理器架构" class="headerlink" title="显示处理器架构"></a>显示处理器架构</h4><p>使用<code>arch</code>命令显示机器的处理器架构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arch</span><br></pre></td></tr></table></figure>
+<p>若机器为32位系统，则输出为<code>x86</code>，若为64位系统，则输出为<code>x86_64</code></p>
+<p><code>arch</code>命令的输出是通过uname命令调取的，是ustname结构中@machine的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct utsname &#123;</span><br><span class="line">  char sysname[];    // Operating system name (e.g., &quot;Linux&quot;)  内核名称 </span><br><span class="line">  char nodename[];   // Name within &quot;some implementation-defined network&quot;  网络节点上的主机名 </span><br><span class="line">  char release[];    // Operating system release (e.g., &quot;2.6.28&quot;) 内核发行号</span><br><span class="line">  char version[];    // Operating system version 内核版本</span><br><span class="line">  char machine[];    // Hardware identifier 主机的硬件架构名称 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="显示系统信息-1"><a href="#显示系统信息-1" class="headerlink" title="显示系统信息"></a>显示系统信息</h4><p>使用<code>uname</code>命令显示系统信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname [options] [--help] [--version]</span><br></pre></td></tr></table></figure>
+<p>参数含义</p>
+<p>-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示全部的信息<br>-m&nbsp;&nbsp;&nbsp;&nbsp;显示电脑类型<br>-n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示在网络上的主机名称<br>-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示操作系统的发行编号<br>-s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示操作系统名称<br>-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示操作系统版本<br>--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示帮助<br>--version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示版本信息</p>
+<p>显示系统信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Sunshine-0215/CDN_Personalblog_202001@3.0/200321/uname-a.png" alt="uname -a"></p>
+<p>显示操作系统的发行编号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Sunshine-0215/CDN_Personalblog_202001@3.0/200321/uname-r.png" alt="uname-r"></p>
+<p>显示操作系统版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -v</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Sunshine-0215/CDN_Personalblog_202001@3.0/200321/uname-v.png" alt="uname-v"></p>
+<p>显示uname帮助</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname --help</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Sunshine-0215/CDN_Personalblog_202001@3.0/200321/uname-help.png" alt="uname-help"></p>
+<h4 id="查看所有硬件信息"><a href="#查看所有硬件信息" class="headerlink" title="查看所有硬件信息"></a>查看所有硬件信息</h4><p>使用<code>dmidecode</code>命令输出系统中所有硬件的信息，需要添加sudo前缀提供权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dmidecode</span><br></pre></td></tr></table></figure>
+<p>使用此命令不仅可以得到当前机器上的配置，也可以得到系统支持的最大配置。这条命令参数极多，使用不同后缀可以查询不同的硬件信息，详情倾自行搜索尝试</p>
+<h4 id="文件输出命令"><a href="#文件输出命令" class="headerlink" title="文件输出命令"></a>文件输出命令</h4><p>使用<code>cat</code>命令链接文件内容并将其输出到标准输出设备，类似于<code>type</code>命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat file</span><br></pre></td></tr></table></figure>
+<p>可以使用<code>cat</code>命令链接系统中的所有文件并显示其内容，常用于查看一些文件信息</p>
+<p>显示cpuinfo文件的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo</span><br></pre></td></tr></table></figure>
+<p>显示系统中的中断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/interrupts</span><br></pre></td></tr></table></figure>
+<p>显示内存使用信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/meninfo</span><br></pre></td></tr></table></figure>
+<p>显示网络适配器及统计</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/net/dev</span><br></pre></td></tr></table></figure>
+<p>显示已加载的文件系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/mounts</span><br></pre></td></tr></table></figure>
+<h4 id="显示系统中PCI总线设备"><a href="#显示系统中PCI总线设备" class="headerlink" title="显示系统中PCI总线设备"></a>显示系统中PCI总线设备</h4><p>使用<code>lspci</code>命令列举系统中的PCI总线设备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lspci</span><br><span class="line">lspci -tv</span><br></pre></td></tr></table></figure>
+<p>终端会输出系统中的PCI/PCI-E总线设备</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Sunshine-0215/CDN_Personalblog_202001@3.0/200321/lspci.png" alt="lspci"></p>
+<h4 id="显示系统中USB总线设备"><a href="#显示系统中USB总线设备" class="headerlink" title="显示系统中USB总线设备"></a>显示系统中USB总线设备</h4><p>使用<code>lsusb</code>命令列举系统中的USB总线设备</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lsusb</span><br><span class="line">lsusb -tv</span><br></pre></td></tr></table></figure>
+<p>终端会输出系统中的USB总线设备</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Sunshine-0215/CDN_Personalblog_202001@3.0/200321/lsusb.png" alt="lsusb"></p>
+<h4 id="显示系统日期"><a href="#显示系统日期" class="headerlink" title="显示系统日期"></a>显示系统日期</h4><p>使用<code>date</code>命令显示当前系统日期时间(UTC时间)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
+<h4 id="显示日历"><a href="#显示日历" class="headerlink" title="显示日历"></a>显示日历</h4><p>使用<code>cal</code>命令显示日历，在终端中就可以显示与图形界面相仿的日历信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cal [year]</span><br></pre></td></tr></table></figure>
+<p>显示year的日历表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cal 2020</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/Sunshine-0215/CDN_Personalblog_202001@3.0/200321/cal.png" alt="cal 2020"></p>
+<h4 id="设置系统时间"><a href="#设置系统时间" class="headerlink" title="设置系统时间"></a>设置系统时间</h4><p>使用<code>date</code>命令设置系统日期和时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date [month][date][hour][minute][year].[second]</span><br></pre></td></tr></table></figure>
+<p>设置系统时间为2020年3月21日17:00:00</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date 032117002020.00</span><br></pre></td></tr></table></figure>
+<h4 id="保存系统时间"><a href="#保存系统时间" class="headerlink" title="保存系统时间"></a>保存系统时间</h4><p>使用<code>clock</code>命令保存系统时间修改到BIOS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clock -w</span><br></pre></td></tr></table></figure>
+<h2 id="系统关机、重启、运行等级"><a href="#系统关机、重启、运行等级" class="headerlink" title="系统关机、重启、运行等级"></a>系统关机、重启、运行等级</h2><h4 id="关闭系统命令"><a href="#关闭系统命令" class="headerlink" title="关闭系统命令"></a>关闭系统命令</h4><p>使用<code>shutdown</code>命令关闭系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown [-t seconds] [-rkhncfF] time [message]</span><br></pre></td></tr></table></figure>
+<p>参数含义</p>
+<p>-t seconds&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设定在t秒后关闭系统<br>-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关机后重新开机<br>-k&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;并不会真的关机，只是将警告讯息传送给所有使用者<br>-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关机后停机<br>-n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不采用正常程序来关机，用强迫的方式杀掉所有执行中的程序后自行关机<br>-c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;取消目前已经进行中的关机动作。<br>-f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关机时，不做 fsck 动作(检查 Linux 文件系统)<br>-F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关机时，强迫进行 fsck 动作<br>time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设定关机的时间，单位为分钟<br>message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传送给所有使用者的警告讯息</p>
+<p>示例</p>
+<p>立即关闭系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now</span><br></pre></td></tr></table></figure>
+<p>10分钟后关机，并向使用者发出提醒</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h +5 “The System will shutdown after 5 minutes”</span><br></pre></td></tr></table></figure>
+<p>在20:35重启计算机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -r 20:35</span><br></pre></td></tr></table></figure>
+<p>取消当前正在计时的关机任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -c</span><br></pre></td></tr></table></figure>
+<h4 id="退出当前账号"><a href="#退出当前账号" class="headerlink" title="退出当前账号"></a>退出当前账号</h4><p>使用<code>logout</code>命令退出当前账号，需要在root账户下操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logout</span><br></pre></td></tr></table></figure>
+<h4 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h4><p>使用<code>reboot</code>命令重启系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot [-n] [-w] [-d] [-f] [-i]</span><br></pre></td></tr></table></figure>
+<p>参数含义<br>-n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在重开机前不做将记忆体资料写回硬盘的动作<br>-w&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;并不会真的重开机，只是把记录写到/var/log/wtmp档案里<br>-d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不把记录写到 /var/log/wtmp 档案里（-n这个参数包含了-d）<br>-f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强迫重开机，不呼叫 shutdown 这个指令<br>-i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在重开机之前先把所有网络相关的装置先停止</p>
+<h4 id="系统运行等级"><a href="#系统运行等级" class="headerlink" title="系统运行等级"></a>系统运行等级</h4><p>使用<code>init</code>命令调整系统运行等级(run level)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init [mode]</span><br></pre></td></tr></table></figure>
+<p>参数含义<br>0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停机<br>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单用户模式<br>2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;多用户模式，没有NFS且无网络连接<br>3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完全多用户模式，命令行模式(标准系统运行等级)<br>4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不可用<br>5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图形化界面模式<br>6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重新启动<br>s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单用户模式，不配置网络和后台进程</p>
+<p>关闭系统，shutdown命令就是运用了这个机制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 0</span><br></pre></td></tr></table></figure>
+<p>重启系统，reboot命令就是运用了这个机制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init 6</span><br></pre></td></tr></table></figure>
+<p>通过修改系统的initdefault属性(对应于不同的发行版这个属性有不同的名字，Ubuntu18中已经这个名称已经修改)，可以修改系统的默认启动属性。</p>
+<p>警示！无论何时都不能将initdefault设置为1或者6，这会将系统启动时的默认run level改变，导致系统不停关机或重启</p>
+<h4 id="系统运行等级之二"><a href="#系统运行等级之二" class="headerlink" title="系统运行等级之二"></a>系统运行等级之二</h4><p>使用<code>telinit</code>命令调整系统运行等级(run level)，命令格式和<code>init</code>相同</p>
+<p><code>telinit</code>命令是<code>init</code>命令的软连接，用户程序通过<code>telinit</code>修改run level</p>
+<p>(作者这么写的目的就是为了让用户多写3个字符吗)</p>
+<p>由于<code>init</code>进程是PID=1的进程，是所有进程的老祖宗，推测是为了系统安全和稳定性</p>
+<h2 id="文件挂载卸载"><a href="#文件挂载卸载" class="headerlink" title="文件挂载卸载"></a>文件挂载卸载</h2><h4 id="文件或驱动器挂载"><a href="#文件或驱动器挂载" class="headerlink" title="文件或驱动器挂载"></a>文件或驱动器挂载</h4><p>使用<code>mount</code>命令挂载Linux系统外的文件，在系统目录下操作可能需要添加sudo前缀提供权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mount [-hV]</span><br><span class="line">mount -a [-fFnrsvw] [-t vfstype]</span><br><span class="line">mount [-fnrsvw] [-o options [,...]] device | dir</span><br><span class="line">mount [-fnrsvw] [-t vfstype] [-o options] device dir</span><br></pre></td></tr></table></figure>
+<p>参数含义</p>
+<p>-V&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示程序版本<br>-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示辅助讯息</p>
+<p>-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示较讯息，通常和 -f 用来除错<br>-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将 /etc/fstab 中定义的所有档案系统挂上<br>-F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个命令通常和 -a 一起使用，它会为每一个 mount 的动作产生一个行程负责执行。在系统需要挂上大量 NFS 档案系统时可以加快挂上的动作<br>-f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通常用在除错的用途。它会使 mount 并不执行实际挂上的动作，而是模拟整个挂上的过程。通常会和 -v 一起使用<br>-n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一般而言，mount 在挂上后会在 /etc/mtab 中写入一笔资料。但在系统中没有可写入档案系统存在的情况下可以用这个选项取消这个动作<br>-s-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;等于 -o ro<br>-w&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;等于 -o rw<br>-L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将含有特定标签的硬盘分割挂上<br>-U&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将档案分割序号为 的档案系统挂下。-L 和 -U 必须在/proc/partition 这种档案存在时才有意义<br>-t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;指定档案系统的型态，通常不必指定。mount 会自动选择正确的型态</p>
+<p>-o async&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;打开非同步模式，所有的档案读写动作都会用非同步模式执行<br>-o sync&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在同步模式下执行<br>-o atime、-o noatime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当 atime 打开时，系统会在每次读取档案时更新档案的『上一次调用时间』。当我们使用 flash 档案系统时可能会选项把这个选项关闭以减少写入的次数<br>-o auto、-o noauto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;打开/关闭自动挂上模式<br>-o defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用预设的选项 rw, suid, dev, exec, auto, nouser, and async<br>-o dev、-o nodev、-o exec、-o noexec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;允许执行档被执行<br>-o suid、-o nosuid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;允许执行档在 root 权限下执行<br>-o user、-o nouser&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用者可以执行 mount/umount 的动作<br>-o remount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将一个已经挂下的档案系统重新用不同的方式挂上。例如原先是唯读的系统，现在用可读写的模式重新挂上<br>-o ro&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用唯读模式挂上<br>-o rw&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用可读写模式挂上<br>-o loop=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用 loop 模式用来将一个档案当成硬盘分割挂上系统</p>
+<p>示例</p>
+<p>将/dev/hda1挂载/mnt目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/hda1 /mnt</span><br></pre></td></tr></table></figure>
+<p>将/dev/hda1用只读模式挂载在/mut目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -o ro /dev/hda1 /mnt</span><br></pre></td></tr></table></figure>
+<p>将AAA.iso的image文档使用loop模式挂载在/mmt/AAA文件夹下，这条命令在使用软件ISO安装包时非常好用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -o loop AAA.iso /mnt/AAA</span><br></pre></td></tr></table></figure>
+<h4 id="驱动器卸载"><a href="#驱动器卸载" class="headerlink" title="驱动器卸载"></a>驱动器卸载</h4><p>使用<code>umount</code>命令卸载目前挂载在系统中的文件系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount [-ahnrvV][-t &lt;文件系统类型&gt;][文件系统]</span><br></pre></td></tr></table></figure>
+<p>参数含义<br>-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卸除/etc/mtab中记录的所有文件系统<br>-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示帮助<br>-n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卸除时不要将信息存入/etc/mtab文件中<br>-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若无法成功卸除，则尝试以只读的方式重新挂入文件系统<br>-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;执行时显示详细的信息<br>-V&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示版本信息<br>-t&lt;文件系统类型&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仅卸除选项中所指定的文件系统<br>[文件系统]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除了直接指定文件系统外，也可以用设备名称或挂入点来表示文件系统</p>
+<p>示例</p>
+<p>通过设备名和挂载点卸载文件系统，同时输出详细信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">umount -v /dev/sda1   //通过设备名卸载</span><br><span class="line">umount -v /mnt/AAA    //通过挂载点卸载</span><br></pre></td></tr></table></figure>
+<p>如果设备正忙，卸载则会失败，这个问题的常见原因是，某个打开的shell当前目录为挂载点中的某个目录</p>
+<p>运行卸载操作而不写入<code>/etc/mtab</code>文件- 当文件为只读或当磁盘写满时非常有用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount -n /mnt/sda1</span><br></pre></td></tr></table></figure>
+<h4 id="强制驱动器卸载-解除占用"><a href="#强制驱动器卸载-解除占用" class="headerlink" title="强制驱动器卸载(解除占用)"></a>强制驱动器卸载(解除占用)</h4><p>使用<code>fuser</code>命令找出占用某个文件、驱动器、TCP、UDP、端口号的进程，并可以结束进程，借出对象的占用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuser [options] [paras]</span><br></pre></td></tr></table></figure>
+<p>参数含义<br>-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示命令行中指定的所有文件<br>-k&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;杀死访问指定文件的所有进程<br>-i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;杀死进程前需要用户进行确认<br>-l&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;列出所有已知信号名<br>-m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;指定一个被加载的文件系统或一个被加载的块设备<br>-n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选择不同的名称空间<br>-u&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在每个进程后显示所属的用户名</p>
+<p>paras&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;被占用的对象，可以是文件、驱动器、TCP、UDP、端口号等</p>
+<p>列出使用<code>/etc/passwd</code>文件的本地进程的进程号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuser /etc/passwd</span><br></pre></td></tr></table></figure></p>
+<p>列出使用<code>/etc/filesystems</code>文件的进程的进程号和用户登录名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuser -u /etc/filesystems</span><br></pre></td></tr></table></figure>
+<p>终止使用给定文件系统的所有进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuser -k -x -u -c /dev/hd1  or  fuser -kxuc /home</span><br></pre></td></tr></table></figure>
+<p>在驱动器繁忙时强制卸载驱动器，并清除所有占用此驱动器的进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuser -km /mnt/sda1</span><br></pre></td></tr></table></figure>
+<h2 id="分区错误检查"><a href="#分区错误检查" class="headerlink" title="分区错误检查"></a>分区错误检查</h2><h4 id="检查修复文件系统错误"><a href="#检查修复文件系统错误" class="headerlink" title="检查修复文件系统错误"></a>检查修复文件系统错误</h4><p>在Linux系统关机过程中，系统会对文件系统进行检查，若出现问题则系统不能正常关闭。使用<code>fsck</code>命令检查并尝试修复文件系统中的错误，此外，不应该使用<code>fsck</code>命令检查已挂载的磁盘，可能对磁盘造成永久的伤害，在检查之前建议卸载磁盘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fsck [options] [para]</span><br></pre></td></tr></table></figure>
+<p>参数含义</p>
+<p>-a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;自动修复文件系统，不询问任何问题<br>-A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;依照/etc/fstab配置文件的内容，检查文件内所列的全部文件系统<br>-N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不执行指令，仅列出实际执行会进行的动作<br>-P&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当搭配”-A”参数使用时，则会同时检查所有的文件系统<br>-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;采用互动模式，在执行修复时询问问题，让用户得以确认并决定处理方式<br>-R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当搭配”-A”参数使用时，则会略过/目录的文件系统不予检查<br>-s&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;依序执行检查作业，而非同时执行<br>-T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;执行fsck指令时，不显示标题信息<br>-V&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示指令执行过程<br>-t [文件系统类型]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;指定要检查的文件系统类型，若在 /etc/fstab 中已有定义或 kernel 本身已支援的则不需加上此参数</p>
+<p>另外，在运行 fsck 时，可能出错并返回一些错误码。下面是一些常见的错误及其意义</p>
+<p>0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;没有错误<br>1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修复了一些文件系统错误<br>2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系统需要被重启<br>4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文件系统错误未被修复<br>8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作错<br>16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用或语法错<br>32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fsck 被用户取消<br>128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共享库出错</p>
+<p>对单个目录进行错误检查并进行自动修复，-a也可用-y代替</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fsck -a /dev/sda1</span><br></pre></td></tr></table></figure>
+<p>仅检查文件系统错误，不进行修复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fsck -n /dev/sda1</span><br></pre></td></tr></table></figure>
+<p>检查所有分区上的所有文件错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fsck -A</span><br><span class="line">fsck -AR  //禁止对根文件目录进行检查</span><br></pre></td></tr></table></figure>
+<p>只检查指定文件系统类型分区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fsck -t ext4 /dev/sda1  //检查ext4类型的sda1分区</span><br><span class="line">fsck -t -A ext4         //检查所有ext4类型的所有分区</span><br></pre></td></tr></table></figure>
+<p>只在卸载的磁盘上进行磁盘错误检查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fsck -AM</span><br></pre></td></tr></table></figure>
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+	
+		<div style="text-align: center; font-size: 20px">来了就留下您的评分吧！</div>
+		<div style="text-align: center;" id="wpac-rating">正在加载点赞系统</div>
+		<script type="text/javascript">
+			wpac_init = window.wpac_init || [];
+			wpac_init.push({widget: 'Rating', id: 21085 });
+			(function() {
+				if ('WIDGETPACK_LOADED' in window) return;
+				WIDGETPACK_LOADED = true;
+				var mc = document.createElement('script');
+				mc.type = 'text/javascript';
+				mc.async = true;
+				mc.src = 'https://embed.widgetpack.com/widget.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+			})();
+		</script>
+		<a href="https://widgetpack.com" class="wpac-cr"></a>
+	
+
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-26T20:22:02+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2020年3月26日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Linux/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Linux</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Ubuntu/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>Ubuntu</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/学习/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>学习</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/备份/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>备份</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="QQ好友" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://zhihui.gold/archives/9ca8d389.html&title=Ubuntu常用命令总结之二：系统信息、磁盘操作、用户权限操作、压缩操作 | 浅梦未央のBLOG&summary=养兵千日&nbsp;&nbsp;用兵一时
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="QQ空间" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://zhihui.gold/archives/9ca8d389.html&title=Ubuntu常用命令总结之二：系统信息、磁盘操作、用户权限操作、压缩操作 | 浅梦未央のBLOG&summary=养兵千日&nbsp;&nbsp;用兵一时
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="微博" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=http://zhihui.gold/archives/9ca8d389.html&title=Ubuntu常用命令总结之二：系统信息、磁盘操作、用户权限操作、压缩操作 | 浅梦未央のBLOG&summary=养兵千日&nbsp;&nbsp;用兵一时
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+	</div>
+	
+  </section>
+
+
+        
+        
+            <div class="prev-next">
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/archives/c77b8e4a.html" rel="prev" title="Ubuntu常用命令总结之一：终端设置、部分系统命令、文件操作、目录操作">
+                                    
+                                        Ubuntu常用命令总结之一：终端设置、部分系统命令、文件操作、目录操作
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/Linux/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a> <a class="tag" href="/tags/Ubuntu/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Ubuntu</a> <a class="tag" href="/tags/command/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>command</a> <a class="tag" href="/tags/学习/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>学习</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Ubuntu常用命令总结之二：系统信息、磁盘操作、用户权限操作、压缩操作',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+        
+          
+          
+            <!--
+ * @Author: sunshine
+ * @Date: 1970-01-01 08:00:00
+ * @Description: 
+ -->
+<section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://cdn.jsdelivr.net/gh/Sunshine-0215/CDN-for-Personalblog@2.0/pictures_source_file/Profile/profile_sunshine.jpg'/>
+      </div>
+    
+    
+    <center>
+      <div id="name">
+        <p><big><big>&piv;&sect;&spades;&nbsp;&nbsp;&nbsp;浅梦未央&nbsp;&nbsp;&nbsp;&spades;&sect;&piv;</big></big></p>
+      </div>
+    </center>
+    </center>
+    <center>
+      <div id="binft"></span></div>
+      <script>
+          var binft = function (r) {
+            function t() {
+              return b[Math.floor(Math.random() * b.length)]
+            }  
+            function e() {
+              return String.fromCharCode(94 * Math.random() + 33)
+            }
+            function n(r) {
+              for (var n = document.createDocumentFragment(), i = 0; r > i; i++) {
+                var l = document.createElement("span");
+                l.textContent = e(), l.style.color = t(), n.appendChild(l)
+              }
+              return n
+            }
+            function i() {
+              var t = o[c.skillI];
+              c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
+            }
+            var l = "",
+            o = ["All rivers run into the sea", "Life is real, life is earnest", "Sow nothing, reap nothig", "A young idler, an old beggar", "Bad times make a good man", "No one can call back yesterday", "Not to advance is to go back", "No cross, no crown", "No pains, no gains", "Never say die"].map(function (r) {
+            return r + ""
+            }),
+            a = 2,
+            g = 1,
+            s = 5,
+            d = 75,
+            b = ["rgb(110,64,170)", "rgb(150,61,179)", "rgb(191,60,175)", "rgb(228,65,157)", "rgb(254,75,131)", "rgb(255,94,99)", "rgb(255,120,71)", "rgb(251,150,51)", "rgb(226,183,47)", "rgb(198,214,60)", "rgb(175,240,91)", "rgb(127,246,88)", "rgb(82,246,103)", "rgb(48,239,130)", "rgb(29,223,163)", "rgb(26,199,194)", "rgb(35,171,216)", "rgb(54,140,225)", "rgb(76,110,219)", "rgb(96,84,200)"],
+            c = {
+              text: "",
+              prefixP: -s,
+              skillI: 0,
+              skillP: 0,
+              direction: "forward",
+              delay: a,
+              step: g
+            };
+            i()
+            };
+            binft(document.getElementById('binft'));
+        </script>
+    </center>
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/Sunshine-0215"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:sunshine021599@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=424194725"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://www.zhihu.com/people/qian-meng-wei-yang-87-60"
+              class="social fab fa-zhihu flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://space.bilibili.com/199206501"
+              class="social fab fa-bootstrap flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#显示系统信息"><span class="toc-text">显示系统信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#显示处理器架构"><span class="toc-text">显示处理器架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示系统信息-1"><span class="toc-text">显示系统信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看所有硬件信息"><span class="toc-text">查看所有硬件信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件输出命令"><span class="toc-text">文件输出命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示系统中PCI总线设备"><span class="toc-text">显示系统中PCI总线设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示系统中USB总线设备"><span class="toc-text">显示系统中USB总线设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示系统日期"><span class="toc-text">显示系统日期</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#显示日历"><span class="toc-text">显示日历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置系统时间"><span class="toc-text">设置系统时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#保存系统时间"><span class="toc-text">保存系统时间</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统关机、重启、运行等级"><span class="toc-text">系统关机、重启、运行等级</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关闭系统命令"><span class="toc-text">关闭系统命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#退出当前账号"><span class="toc-text">退出当前账号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重启"><span class="toc-text">重启</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统运行等级"><span class="toc-text">系统运行等级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#系统运行等级之二"><span class="toc-text">系统运行等级之二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件挂载卸载"><span class="toc-text">文件挂载卸载</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文件或驱动器挂载"><span class="toc-text">文件或驱动器挂载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#驱动器卸载"><span class="toc-text">驱动器卸载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#强制驱动器卸载-解除占用"><span class="toc-text">强制驱动器卸载(解除占用)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分区错误检查"><span class="toc-text">分区错误检查</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#检查修复文件系统错误"><span class="toc-text">检查修复文件系统错误</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </section>
+
+
+          
+        
+      
+        
+          
+          
+            <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-sign fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章归档
+        </a></li>
+      
+        <li><a class="flat-box" title="/friends/" href="/friends/"
+          
+            rel="nofollow"
+          
+          
+          id="friends">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          我的友链
+        </a></li>
+      
+        <li><a class="flat-box" title="/404.html" href="/404.html"
+          
+            rel="nofollow"
+          
+          
+          id="404.html">
+          
+            <i class="fas fas fa-cloud-download-alt fa-fw" aria-hidden="true"></i>
+          
+          下载管理
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/9284d20.html" href="/archives/9284d20.html"
+          
+            rel="nofollow"
+          
+          
+          id="archives9284d20.html">
+          
+            <i class="fas fa-calendar-check fa-fw" aria-hidden="true"></i>
+          
+          更新计划
+        </a></li>
+      
+        <li><a class="flat-box" title="/404.html" href="/404.html"
+          
+            rel="nofollow"
+          
+          
+          id="404.html">
+          
+            <i class="fas fas fa-thermometer-three-quarters fa-fw" aria-hidden="true"></i>
+          
+          访问统计
+        </a></li>
+      
+        <li><a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          关于小站
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            
+
+          
+        
+      
+        
+          
+          
+            
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/Linux/" style="font-size: 24px; color: #555">Linux</a> <a href="/tags/QQ/" style="font-size: 14px; color: #999">QQ</a> <a href="/tags/TIM/" style="font-size: 14px; color: #999">TIM</a> <a href="/tags/Ubuntu/" style="font-size: 24px; color: #555">Ubuntu</a> <a href="/tags/Wehcat/" style="font-size: 14px; color: #999">Wehcat</a> <a href="/tags/command/" style="font-size: 14px; color: #999">command</a> <a href="/tags/deepin-wine/" style="font-size: 14px; color: #999">deepin-wine</a> <a href="/tags/备份/" style="font-size: 14px; color: #999">备份</a> <a href="/tags/学习/" style="font-size: 19px; color: #777">学习</a> <a href="/tags/更新/" style="font-size: 14px; color: #999">更新</a>
+    </div>
+  </section>
+
+          
+        
+      
+        
+          
+          
+            <section class="widget latest_comments">
+    <div class="body_hot_comment" id="body_hot_comment"></div>
+</section>
+          
+        
+      
+        
+          
+          
+            <section class='widget plain'>
+  
+<header class='pure'>
+  <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+  
+</header>
+
+  <div class='content pure'>
+    <p><a href="https://github.com/Sunshine-0215/Sunshine-0215.github.io">博客源代码</a>已经公开，如果访问缓慢，可以到<a href="">镜像网站</a></p>
+
+  </div>
+</section>
+
+          
+        
+      
+        
+          
+          
+            <!--
+ * @Author: sunshine
+ * @Date: 1970-01-01 08:00:00
+ * @Description: 
+ -->
+<section class='widget hitokoto'>
+
+<header class='pure'>
+  <div><i class="fas fa-code fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;一言</div>
+  
+</header>
+<div>
+    <div class="content pure">
+    <div>
+        <!-- <div style="display: table-cell;vertical-align: top; color:black;font-size:20px;font-family:'Source Sans Pro',serif;font-weight:bold;text-align:left;">“</div> -->
+        <div style="display: table-cell;text-align: left; vertical-align: middle; font-size:18px; text-indent: 2em; padding: 0.8em 0.2em 1em 0.2em"><b><span style="color:#FF5B33;"><span id="hitokoto-content"></span></span></b></div>
+        <!-- <div style="display: table-cell; vertical-align: bottom; color:black;font-size:20px;font-family:'Source Sans Pro',serif;font-weight:bold;text-align:left;">”</div> -->
+    </div>
+    <div style="text-align: right; font-size: 0.8em; color: #555555;" id="hitokoto-from"></div>
+</section>
+          
+        
+      
+    
+
+  
+</aside>
+<footer id="footer" class="clearfix">
+  
+    <div class="footer">
+      <p>Copyright 浅梦未央@2020</p>
+
+    </div>
+    <br>
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="https://github.com/Sunshine-0215"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:sunshine021599@gmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://music.163.com/#/user/home?id=424194725"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://www.zhihu.com/people/qian-meng-wei-yang-87-60"
+            class="social fab fa-zhihu flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://space.bilibili.com/199206501"
+            class="social fab fa-bootstrap flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+  <div>
+    本站使用
+    <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a>
+    作为主题
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"],
+      linebreaks: { automatic:true },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" },
+      noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFF", mathsize: "90%" } },
+      Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += (all[i].SourceElement().parentNode.className ? ' ' : '') + 'has-jax';
+    }
+  });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+  <!-- fastclick -->
+  <script src="https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body)
+    }, false)
+  </script>
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('') {
+          $('').backstretch(
+          ["https://i.loli.net/2020/03/26/lpfeEmRaBwxYkCZ.jpg"],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          ["https://i.loli.net/2020/03/26/lpfeEmRaBwxYkCZ.jpg"],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="/js/gitalk.css">
+  <script src="/js/gitalk.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+		clientID: '3834d471f8d5bcc2124c',
+		clientSecret: '65eba0180c59c88aaeada1446ed6e55e73ed1861',
+		accessToken: '36159b9ee938e02ee4f766fb299f885b4e477dd7',
+		repo: 'Sunshine-0215.github.io',
+		owner: 'Sunshine-0215',
+		admin: ['Sunshine-0215'],
+		id: location.pathname,
+		language: 'zh-CN',
+		distractionFreeMode: ''
+	});
+	gitalk.render('gitalk-container');
+  </script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.8/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.8/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "复制成功";
+  let COPY_FAILURE = "复制失败";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+
+  <script>
+	var pjax = new Pjax({
+		elements: "a",
+		selectors: [
+			"title",
+			".l_body",
+			"cover-wrapper",
+		]
+	})
+	function LoadHitoKoto(){
+		fetch('https://v1.hitokoto.cn/?c=a')//加载一言
+		.then(function (res){
+			return res.json();
+		})
+		.then(function (data) {
+			var h_content = document.getElementById('hitokoto-content');
+			var h_from = document.getElementById('hitokoto-from');
+			h_content.innerText = data.hitokoto; 
+			h_from.innerText = "——" + data.from; 
+		})
+		.catch(function (err) {
+			console.error(err);
+		})
+	}
+	function LoadGitalk(){
+		$.getScript("/js/gitalk.js", function() {
+			var gitalk = new Gitalk({
+				clientID: '3834d471f8d5bcc2124c',
+				clientSecret: '65eba0180c59c88aaeada1446ed6e55e73ed1861',
+				accessToken: '36159b9ee938e02ee4f766fb299f885b4e477dd7',
+				repo: 'Sunshine-0215.github.io',
+				owner: 'Sunshine-0215',
+				admin: ['Sunshine-0215'],
+				id: location.pathname,
+				language: 'zh-CN',
+				distractionFreeMode: ''
+			});
+			gitalk.render('gitalk-container');
+		});
+	}
+	function LoadMathJax(){
+		$.getScript("//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML", function() {//渲染mathjax
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+			// entry-content是文章页的内容div的class
+			var math = document.getElementsByClassName("entry-content")[0];
+			MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
+		});
+	}
+	function LoadFancybox(){
+		$(".article-entry").find("img").each(function () {//渲染fancy box
+			var t = document.createElement("a");
+			$(t).attr("data-fancybox", "gallery"),
+			$(t).attr("href", $(this).attr("src")),
+			$(this).wrap(t)
+		})
+	}
+	function LoadWpac(){
+		wpac_init = window.wpac_init || [];
+		wpac_init.push({widget: 'Rating', id: 21085});//渲染widget pack（点赞系统）
+		WIDGETPACK_LOADED=false;
+		(function() {
+			WIDGETPACK_LOADED = true;
+			var mc = document.createElement('script');
+			mc.type = 'text/javascript';
+			mc.async = true;
+			mc.src = 'https://embed.widgetpack.com/widget.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+		})();
+	}
+    // 开始 PJAX 执行的函数
+    document.addEventListener('pjax:send', function (){
+		$(".loading").css("display", "block");//加载转圈圈的css
+   });
+
+   // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+   document.addEventListener('pjax:complete', function (){
+		$(".loading").css("display", "none");
+		LoadMathJax();
+		LoadHitoKoto();
+		
+			LoadWpac();
+		
+		LoadFancybox();
+		
+			LoadGitalk();
+		
+   });
+  </script>
+
+  
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" rel="noreferrer">
+	
+		<!-- require APlayer -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+		<!-- require MetingJS -->
+		<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+		<meting-js
+			server="tencent"
+			type="playlist"
+			id="2346298118"
+			fixed=true
+			color="#1BCDFC"
+			mode="circulation"
+			autoplay=false
+			volume=0.7
+		>
+		</meting-js>
+	
+  
+  <script>
+	  
+		  get_latest_comments("Sunshine-0215/Sunshine-0215.github.io");
+	  
+  </script>
+</body>
+</html>
