@@ -86,7 +86,12 @@
   <div class="cover-wrapper">
     <cover class='cover page half'>
       
-        
+        <!--
+ * @Author: sunshine
+ * @Date: 1970-01-01 08:00:00
+ * @Description: 
+ -->
+
   <h1 class='title'>浅梦未央のBLOG</h1>
 
 
@@ -766,6 +771,11 @@
 
   
 </aside>
+<!--
+ * @Author: sunshine
+ * @Date: 1970-01-01 08:00:00
+ * @Description: 
+ -->
 <footer id="footer" class="clearfix">
   
     <div class="footer">
@@ -819,6 +829,23 @@
       
     </div>
   
+  <span id="dateTimes">载入天数时间</span>
+  <script>
+    var now = new Date();
+    function createtime(){
+      var grt = new Date("01/25/2020 12:00:00"); //建站日期  月日年时分秒
+      now.setTime(now.getTime() + 250);
+      days = (now - grt) / 1000 / 60 / 60 / 24,
+      dnum = Math.floor(days);
+      hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length == 1){
+        hnum = "0" + hnum;
+      }
+      document.getElementById("dateTimes").innerHTML = "本站已安全运行" + dnum + "天" + hnum + "小时";
+    }
+    setInterval("createtime()",250);
+  </script>
   <br>
   <div><p>博客内容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
@@ -1053,7 +1080,8 @@
 
 
   <script>setLoadingBarProgress(100);</script>
-
+  <!-- 浏览器搞笑标题-->
+  <script type="text/javascript" src="/js/funnytitle.js"></script>
   <script>
 	var pjax = new Pjax({
 		elements: "a",
@@ -1169,5 +1197,5 @@
 		  get_latest_comments("Sunshine-0215/Sunshine-0215.github.io");
 	  
   </script>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":true,"model":{"scale":1.2,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"position":"right","width":150,"height":300,"hOffset":0,"vOffset":50},"mobile":{"show":true},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"dialog":{"enable":true,"hitokoto":true},"log":false});</script></body>
 </html>
